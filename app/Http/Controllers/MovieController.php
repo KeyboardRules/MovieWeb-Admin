@@ -57,7 +57,6 @@ class MovieController extends Controller
             $movie=new Movie($data);
             if($movie->save()){
                 $movie->categories()->sync($data['categories']);
-                $movie->save();
                 return redirect()->route("movie.detail",Movie::latest('created_at')->first()->id_movie)->with('message','Thêm thành công')->with('class','alert alert-success');
             }
             return redirect()->route("movie.detail",Movie::latest('created_at')->first()->id_movie)->with('message','Có lỗi xảy ra,xin thử lại')->with('class','alert alert-danger');

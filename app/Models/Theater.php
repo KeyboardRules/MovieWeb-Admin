@@ -18,7 +18,7 @@ class Theater extends Model
         'description_theater'
     ];
     public function movies(){
-        return $this->belongsToMany('App\Models\Movie','tb_movies_theaters','theater','movie');
+        return $this->belongsToMany('App\Models\Movie','tb_movies_theaters','theater','movie')->withPivot('from_date','to_date');
     }
     public function scopeID($query,Request $request){
         if($request->name_theater!=""){
@@ -32,4 +32,14 @@ class Theater extends Model
         }
         return $query;
     }
+    public function scopeTheater($query,Request $request){
+        if($request->id_theater!=""){
+            $query->where('id_theater', $request->id_theater);
+        }
+        if($request->name_theater!=""){
+            $query->where('name_theater', 'LIKE', '%' . $request->name_theater . '%');
+        }
+        return $query;
+    }
+
 }

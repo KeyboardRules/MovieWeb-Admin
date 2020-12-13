@@ -111,7 +111,8 @@
                         <div class="col-lg-offset-3 col-lg-10">
                             <form action="{{route('movie.delete',$movie->id_movie)}}" method="post">
                                 @csrf
-                                <a class="btn btn-primary" href="{{route('movie.edit',$movie->id_movie)}}">Chỉnh sửa</a>  
+                                <a class="btn btn-primary" href="{{route('movie.edit',$movie->id_movie)}}">Chỉnh sửa</a> 
+                                <a class="btn btn-info" href="">Những rạp từng chiếu phim</a>  
                                 <button type="submit" class="btn btn-danger">Xóa</button>
                                 <a class="btn btn-default" href="{{route('movies')}}">Về danh sách</a>  
                             </form>

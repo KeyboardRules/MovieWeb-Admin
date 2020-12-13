@@ -69,5 +69,9 @@ Route::group(['middleware' => ['auth.admin']], function() {
     Route::post('/movie/createSubmit','App\Http\Controllers\MovieController@SubmitMovie')->name("movie.createSubmit");
     Route::post('/movie/editSubmit/{id}','App\Http\Controllers\MovieController@SubmitMovie')->name("movie.editSubmit");
     Route::post('/movie/delete/{id}','App\Http\Controllers\MovieController@DeleteMovie')->name('movie.delete');
+    //Movie-Theater
+    Route::get('/theaters/{id}','App\Http\Controllers\MovieTheaterController@ListTheaterView')->name("movie-theaters");
+    Route::get('/delete/{theater}/{movie}','App\Http\Controllers\MovieTheaterController@DeleteTheatersMovies')->name("movies-theaters.delete");
+    Route::post('/theaters/editSubmit/{id}','App\Http\Controllers\MovieTheaterController@SubmitTheaters')->name("movie-theaters.editSubmit");
 });
 

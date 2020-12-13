@@ -23,7 +23,7 @@ class Movie extends Model
         return $this->belongsToMany('App\Models\Category','tb_movies_categories','movie','category');
     }
     public function theaters(){
-        return $this->belongsToMany('App\Models\Theater','tb_movies_theaters','movie','theater');
+        return $this->belongsToMany('App\Models\Theater','tb_movies_theaters','movie','theater')->withPivot('from_date','to_date');
     }
     public function reviews(){
         //$role->users()->associate($user);

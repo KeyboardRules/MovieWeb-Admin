@@ -16,7 +16,6 @@ class CreateMoviesTheatersTable extends Migration
         Schema::create('tb_movies_theaters', function (Blueprint $table) {
             $table->unsignedBigInteger("movie");
             $table->unsignedBigInteger("theater");
-            $table->string("schedule",2000)->nullable();
             $table->date("from_date")->nullable();
             $table->date("to_date")->nullable();
 
