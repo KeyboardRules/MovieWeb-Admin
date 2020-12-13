@@ -70,8 +70,10 @@ Route::group(['middleware' => ['auth.admin']], function() {
     Route::post('/movie/editSubmit/{id}','App\Http\Controllers\MovieController@SubmitMovie')->name("movie.editSubmit");
     Route::post('/movie/delete/{id}','App\Http\Controllers\MovieController@DeleteMovie')->name('movie.delete');
     //Movie-Theater
-    Route::get('/theaters/{id}','App\Http\Controllers\MovieTheaterController@ListTheaterView')->name("movie-theaters");
-    Route::get('/delete/{theater}/{movie}','App\Http\Controllers\MovieTheaterController@DeleteTheatersMovies')->name("movies-theaters.delete");
-    Route::post('/theaters/editSubmit/{id}','App\Http\Controllers\MovieTheaterController@SubmitTheaters')->name("movie-theaters.editSubmit");
+    Route::get('movie/detail/{id}/theaters','App\Http\Controllers\MovieTheaterController@ListTheaterView')->name("movie-theaters");
+    Route::get('theater/detail/{id}/movies','App\Http\Controllers\MovieTheaterController@ListMovieView')->name("theater-movies");
+    Route::get('movies/theaters/{movie}/{theater}/delete','App\Http\Controllers\MovieTheaterController@DeleteTheatersMovies')->name("movies-theaters.delete");
+    Route::post('movie/detail/{id}/theaters/editSubmit','App\Http\Controllers\MovieTheaterController@SubmitTheaters')->name("movie-theaters.editSubmit");
+    Route::post('theater/detail/{id}/movies/editSubmit','App\Http\Controllers\MovieTheaterController@SubmitMovies')->name("theater-movies.editSubmit");
 });
 

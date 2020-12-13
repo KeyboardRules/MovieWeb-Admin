@@ -51,4 +51,17 @@ class Movie extends Model
         }
         return $query;
     }
+    public function scopeMovie($query,Request $request){
+        if($request->id_movie!=""){
+            $query->where('id_movie', $request->id_movie);
+        }
+        if($request->name_movie!=""){
+            $query->where('name_movie', 'LIKE', '%' . $request->name_movie . '%');
+        }
+        if( $request->category!=""&&$request->category!="0"){
+            $query->select('tb_movies.*')->join('tb_movies_categories','id_movie','=','tb_movies_categories.movie')
+            ->where('tb_movies_categories.category',$request->category);
+        }
+        return $query;
+    }
 }

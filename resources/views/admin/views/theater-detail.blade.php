@@ -83,6 +83,7 @@
                             <form action="{{route('theater.delete',$theater->id_theater)}}" method="post">
                                 @csrf
                                 <a class="btn btn-primary" href="{{route('theater.edit',$theater->id_theater)}}">Chỉnh sửa</a>
+                                <a class="btn btn-info" href="{{route('theater-movies',$theater->id_theater)}}">Những phim từng chiếu tại rạp</a>  
                                 <button type="submit" class="btn btn-danger">Xóa</button>
                                 <a class="btn btn-default" href="{{route('theaters')}}">Về danh sách</a>  
                             </form>
@@ -115,11 +116,11 @@
 									<p>{{ Carbon\Carbon::parse($movie->date_movie)->format('Y')}}</p>
 									<div class="block-stars">
 										<ul class="w3l-ratings">
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+                                            <li><i class="fa fa-lg @if($movie->score()<1&&$movie->score()>0) fa-star-half-o @elseif($movie->score()>=1) fa-star @else fa-star-o @endif" aria-hidden="true"></i></li>
+									        <li><i class="fa fa-lg @if($movie->score()<2&&$movie->score()>1) fa-star-half-o @elseif($movie->score()>=2) fa-star @else fa-star-o @endif" aria-hidden="true"></i></li>
+									        <li><i class="fa fa-lg @if($movie->score()<3&&$movie->score()>2) fa-star-half-o @elseif($movie->score()>=3) fa-star @else fa-star-o @endif" aria-hidden="true"></i></li>
+									        <li><i class="fa fa-lg @if($movie->score()<4&&$movie->score()>3) fa-star-half-o @elseif($movie->score()>=4) fa-star @else fa-star-o @endif" aria-hidden="true"></i></li>
+									        <li><i class="fa fa-lg @if($movie->score()<5&&$movie->score()>4) fa-star-half-o @elseif($movie->score()>=5) fa-star @else fa-star-o @endif" aria-hidden="true"></i></li>
 										</ul>
 									</div>
 									<div class="clearfix"></div>
