@@ -21,7 +21,7 @@ class TheaterController extends Controller
     function DetailTheaterView($id){
         $theater=Theater::find($id);
         if(!empty($theater)){
-            return view("admin.views.theater-detail",["theater"=>$theater])->with('title',$theater->name_theater);
+            return view("admin.views.theater-detail",["theater"=>$theater,])->with('title',$theater->name_theater);
         }
         else{
             return redirect()->route("theaters");

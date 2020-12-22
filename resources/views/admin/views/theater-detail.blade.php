@@ -98,11 +98,11 @@
         </section>
         <section class="panel">
             <header class="panel-heading">
-                Những bộ phim đang chiếu tại rạp
+                Top 10 bộ phim từng chiếu tại rạp
             </header>
             <div class="w3_agile_banner_bottom_grid">
 				<div id="owl-demo" class="owl-carousel owl-theme">
-                    @foreach($theater->movies as $movie)
+                    @foreach($theater->movies->sortByDesc('score()')->take(10) as $movie)
 					<div class="item">
 						<div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
 							<a href="{{route('movie.detail',$movie->id_movie)}}" class="hvr-shutter-out-horizontal"><img src="{{$movie->image_movie}}" title="album-name" class="img-responsive" alt=" " />

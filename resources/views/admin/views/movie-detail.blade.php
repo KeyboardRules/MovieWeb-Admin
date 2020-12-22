@@ -148,7 +148,7 @@
         </section>
         <section class="panel">
             <header class="panel-heading">
-                Những rạp đang chiếu phim {{$movie->name_movie}}
+                Những rạp đã chiếu phim {{$movie->name_movie}}
             </header>
             <div class="w3_agile_banner_bottom_grid">
                 @if($movie->theaters->count()==0)
@@ -166,9 +166,7 @@
 									<h6><a href="{{route('theater.detail',$theater->id_theater)}}">{{$theater->name_theater}}</a></h6>							
 								</div>
 							</div>
-							<!-- <div class="ribben">
-								<p>NEW</p>
-							</div> -->
+                            <div><p>{{Carbon\Carbon::parse($theater->pivot->from_date)->format('M d Y')}} - {{Carbon\Carbon::parse($theater->pivot->to_date)->format('M d Y')}}</P></div>
 						</div>
                     </div>
                     @endforeach

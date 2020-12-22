@@ -30,7 +30,10 @@ class Movie extends Model
         return $this->hasMany('App\Models\Review','movie_review','id_movie');
     }
     public function score(){
-        return $this->reviews()->avg('score_review');
+        if($this->reviews()->count()!=0){
+            return $this->reviews()->avg('score_review');
+        }
+        return 0;
     }
     public function scopeID($query,Request $request){
         if($request->name_movie!=""){
