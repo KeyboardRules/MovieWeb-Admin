@@ -60,7 +60,7 @@
         <!-- user login dropdown start-->
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img style="width: 40px;height: 40px;" alt="" src="{{Auth::user()->image_user}}">
+                <img style="width: 40px;height: 40px;" alt="" @if(Auth::user()->image_user!=null) src="{{Auth::user()->image_user}}" @else src="{{asset('resources/images/avatar.png')}}" @endif>
                 <span class="username">
                 @if(Auth::user()->name_user!=null)
                 {{Auth::user()->name_user}}

@@ -48,7 +48,7 @@ class MovieController extends Controller
             'name_movie' => 'required|max:255',
             'date_movie' => 'required|date',
             'length_movie'=>'required',
-            'image_movie'=>'nullable',
+            'image_file'=>'nullable|file|mimes:jpeg,png,jpg,svg|max:2048',
             'trailer_movie'=>'nullable',
             'content_movie'=>'nullable',
             'categories'=>'nullable'
@@ -56,7 +56,20 @@ class MovieController extends Controller
         if($id==0){
             $movie=new Movie($data);
             if($movie->save()){
-                $movie->categories()->sync($data['categories']);
+                if($request->hasFile('image_file')){
+                    $imageName = 'movie_avatar.'.$movie->id_movie;
+                    $request->image_file->move('C:\xampp\htdocs\ImageServer\Movies', $imageName.'.png');
+                    //$request->image_file->move(\public_path('Users'), '123312');
+                    $movie->image_movie="http://localhost/ImageServer/Movies/".$imageName.'.png';
+                }
+                if(isset($data['categories'])){
+                    $movie->categories()->sync($data['categories']);
+                }
+                else{
+                    $movie->categories()->detach();
+                }
+                
+                $movie->save();
                 return redirect()->route("movie.detail",Movie::latest('created_at')->first()->id_movie)->with('message','Thêm thành công')->with('class','alert alert-success');
             }
             return redirect()->route("movie.detail",Movie::latest('created_at')->first()->id_movie)->with('message','Có lỗi xảy ra,xin thử lại')->with('class','alert alert-danger');
@@ -66,11 +79,21 @@ class MovieController extends Controller
             $movie=Movie::find($id);
             $movie->name_movie=$request->name_movie;
             $movie->date_movie=$request->date_movie;
-            $movie->image_movie=$request->image_movie;
+            if($request->hasFile('image_file')){
+                $imageName = 'movie_avatar.'.$movie->id_movie;
+                $request->image_file->move('C:\xampp\htdocs\ImageServer\Movies', $imageName.'.png');
+                //$request->image_file->move(\public_path('Users'), '123312');
+                $movie->image_movie="http://localhost/ImageServer/Movies/".$imageName.'.png';
+            }
             $movie->trailer_movie=$request->trailer_movie;
             $movie->length_movie=$request->length_movie;
             $movie->content_movie=$request->content_movie;
-            $movie->categories()->sync($data['categories']);
+            if(isset($data['categories'])){
+                $movie->categories()->sync($data['categories']);
+            }
+            else{
+                $movie->categories()->detach();
+            }
 
             if($movie->save()){
                 return redirect()->route("movie.detail",$id)->with('message','Sửa thành công')->with('class','alert alert-success');
@@ -82,6 +105,11 @@ class MovieController extends Controller
         $movie=Movie::find($id);
         if(!empty($movie)){
             if($movie->delete()){
+                $file=explode("/",$movie->image_movie);
+                $fileName='C:\xampp\htdocs\ImageServer\Movies'. DIRECTORY_SEPARATOR .end($file);
+                if(file_exists($fileName)){
+                    unlink($fileName);
+                }
                 return redirect()->route("movies")->with('message','Xóa thành công')->with('class','alert alert-success');
             }
             return redirect()->route("movie.detail",Movie::latest('created_at')->first()->id_movie)->with('message','Có lỗi xảy ra,xin thử lại')->with('class','alert alert-danger');

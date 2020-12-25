@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\File; 
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Authority;
@@ -37,6 +38,11 @@ class UserController extends Controller
     function DeleteUser(Request $request,$id=0){
         $user=User::find($id);
         if(!empty($user)){
+            $file=explode("/",$user->image_user);
+            $fileName='C:\xampp\htdocs\ImageServer\Users'. DIRECTORY_SEPARATOR .end($file);
+            if(file_exists($fileName)){
+                unlink($fileName);
+            }
             $user->delete();
             return redirect()->route("users")->with('message','Xóa thành công')->with('class','alert alert-success');
         }

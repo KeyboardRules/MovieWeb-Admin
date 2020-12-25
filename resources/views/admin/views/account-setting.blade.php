@@ -17,7 +17,7 @@
                 <strong>{{ session()->get('message')}}</strong>
             </div>
             @endif
-                <form action="{{route('account.update')}}"  class="form-horizontal bucket-form" method="post">
+                <form action="{{route('account.update')}}"  class="form-horizontal bucket-form" method="post" enctype="multipart/form-data">
                     @csrf
                     @if($errors->any())
                     <div class="alert alert-danger" role="alert">
@@ -68,21 +68,15 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group @error('image_file') has-error @enderror">
                         <label class="col-sm-3 control-label" for="image_file">Image File</label>
                         <div class="col-sm-8">
-                        <input class="form-control-file" type="file" id="image_file" disabled>
+                        <input class="form-control-file" type="file" id="image_file" name="image_file">
+                        @error('image_file')
+                            <div class="help-block">{{$message}}</div>
+                        @enderror
                         </div>
-                    </div>                       
-                    <div class="form-group @error('image_user') has-error @enderror">
-                        <label class="col-sm-3 control-label">Image</label>
-                        <div class="col-sm-8">
-                            <input type="url" id="image_user" name="image_user" class="form-control " placeholder="URL" value="{{Auth::user()->image_user}}">
-                            @error('image_user')
-                                 <div class="help-block">{{$message}}</div>
-                            @enderror
-                        </div>
-                    </div>
+                    </div>                 
                     <div class="form-group @error('email_user') has-error @enderror">
                         <label class="col-sm-3 control-label">Email</label>
                         <div class="col-sm-8">

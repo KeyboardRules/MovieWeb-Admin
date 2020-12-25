@@ -23,6 +23,7 @@ class AccountController extends Controller
             'name_user' => 'nullable|max:40',
             'gender_user' => 'required',
             'birth_user'=>'required|date',
+            'image_file'=>'nullable|file|mimes:jpeg,png,jpg,svg|max:2048',
             'image_user'=>'nullable',
             'email_user'=>'nullable',
             'old_password'=>'required_with:new_password',
@@ -33,7 +34,13 @@ class AccountController extends Controller
         $user->name_user=$request->name_user;
         $user->gender_user=$request->gender_user;
         $user->birth_user=$request->birth_user;
-        $user->image_user=$request->image_user;
+        if($request->hasFile('image_file')){
+            $imageName = 'user_avatar.'.$user->id_user;
+            $request->image_file->move('C:\xampp\htdocs\ImageServer\Users', $imageName.'.png');
+            //$request->image_file->move(\public_path('Users'), '123312');
+            $user->image_user="http://localhost/ImageServer/Users/".$imageName.'.png';
+        }
+        //$user->image_user=$request->image_user;
         $user->email_user=$request->email_user;
         if($request->old_password){
             if(\password_verify($request->old_password,$user->password_user)){

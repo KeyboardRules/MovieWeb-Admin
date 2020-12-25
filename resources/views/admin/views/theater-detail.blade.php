@@ -44,7 +44,7 @@
                     <section class="panel">
                         <div class="panel-body">
                             <div class="cover text-center" style="width=100%">
-                                <img style="max-width:100%;"  width="auto" height="400" src="{{$theater->image_theater}}" alt="image of theater">
+                                <img style="max-width:100%;"  width="auto" height="400" @if($theater->image_theater!=null) src="{{$theater->image_theater}}" @else src="{{asset('resources/images/theater.png')}}" @endif alt="image of theater">
                                 <p style="margin-top:5px;"><em>Ảnh rạp</em></p>
                             </div>
                         </div>

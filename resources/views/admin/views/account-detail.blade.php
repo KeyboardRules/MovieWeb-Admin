@@ -23,7 +23,7 @@
                     <section class="panel">
                         <div class="panel-body">
                             <div class="cover text-center" style="width:100%">
-                                <img style="max-width:100%;" width="auto" height="400" src="{{Auth::user()->image_user}}" alt="image of account">
+                                <img style="max-width:100%;" width="auto" height="400" @if(Auth::user()->image_user!=null) src="{{Auth::user()->image_user}}" @else src="{{asset('resources/images/avatar.png')}}" @endif alt="image of account">
                                 <p style="margin-top:5px;"><em>Ảnh đại diện</em></p>
                             </div>
                         </div>

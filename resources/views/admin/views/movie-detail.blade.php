@@ -43,7 +43,7 @@
                     <section class="panel">
                         <div class="panel-body">
                             <div class="cover text-center" style="width=100%">
-                                <img style="max-width:100%;" width="auto" height="400" src="{{$movie->image_movie}}" alt="image of movie">
+                                <img style="max-width:100%;" width="auto" height="400" @if($movie->image_movie!=null) src="{{$movie->image_movie}}" @else src="{{asset('resources/images/movie.jpg')}}" @endif alt="image of movie">
                                 <p style="margin-top:5px;"><em>Ảnh poster</em></p>
                             </div>
                         </div>

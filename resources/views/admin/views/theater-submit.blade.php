@@ -13,10 +13,10 @@
             <div class="panel-body">
             @if($id!=0)
             @section('title','Edit '.$theater->name_theater)
-                <form action="{{route('theater.editSubmit',$id)}}"  class="form-horizontal bucket-form" method="post">
+                <form action="{{route('theater.editSubmit',$id)}}"  class="form-horizontal bucket-form" method="post" enctype="multipart/form-data">
             @else
             @section('title','Thêm mới rạp')
-                <form action="{{route('theater.createSubmit')}}" class="form-horizontal bucket-form" method="post">
+                <form action="{{route('theater.createSubmit')}}" class="form-horizontal bucket-form" method="post" enctype="multipart/form-data">
             @endif
                     @csrf
                     @if($errors->any())
@@ -50,19 +50,12 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group @error('image_file') has-error @enderror">
                         <label class="col-sm-3 control-label" for="image_file">Image File</label>
                         <div class="col-sm-8">
-                        <input class="form-control-file" type="file" id="image_file" disabled>
-                        </div>
-                    </div>
-                                                
-                    <div class="form-group @error('image_theater') has-error @enderror">
-                        <label class="col-sm-3 control-label">Image</label>
-                        <div class="col-sm-8">
-                            <input type="url" id="image_theater" name="image_theater" class="form-control" placeholder="URL" value="{{$theater->image_theater ?? old('image_theater')}}">
-                            @error('image_theater')
-                                 <div class="help-block">{{$message}}</div>
+                            <input class="form-control-file" type="file" id="image_file" name="image_file">
+                            @error('image_file')
+                                <div class="help-block">{{$message}}</div>
                             @enderror
                         </div>
                     </div>
