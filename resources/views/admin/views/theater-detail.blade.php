@@ -27,7 +27,6 @@
 	}); 
 </script> 
 <!-- //banner-bottom-plugin -->
-<link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>
 <div class="row">
     <div class="col-lg-12">
         <section class="panel"> 

@@ -26,7 +26,6 @@
 	}); 
 </script> 
 <!-- //banner-bottom-plugin -->
-<link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>
 <div class="row">
     <div class="col-lg-12">
         <section class="panel"> 
@@ -190,7 +189,7 @@
                 </h5>
 					<div class="media-left">
 					 <a href="{{route('user.detail',$review->user->id_user)}}">
-						<img style="width: 40px;height: 40px;" src="{{$review->user->image_user}}" title="One movies" alt=" " />
+						<img style="width: 40px;height: 40px;" @if($review->user->image_user!=null) src="{{$review->user->image_user}}" @else src="{{asset('resources/images/avatar.png')}}" @endif title="One movies" alt=" " />
 						</a>
 					</div>
 						<div class="media-body">

@@ -29,7 +29,7 @@
                     <section class="panel">
                         <div class="panel-body">
                             <div class="cover text-center" style="width=100%">
-                                <img style="max-width:100%;" width="auto" height="400" src="{{$user->image_user}}" alt="image of user">
+                                <img style="max-width:100%;" width="auto" height="400" @if($user->image_user!=null) src="{{$user->image_user}}" @else src="{{asset('resources/images/avatar.png')}}" @endif alt="image of user">
                                 <p style="margin-top:5px;"><em>Ảnh đại diện</em></p>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
             <div class="panel-body">
             @if($reviews->count()==0)
             </br>
-				<h3 style="text-align:center;">Phim chưa có đánh giá nào.</h3>
+				<h3 style="text-align:center;">Người dùng chưa có đánh giá nào.</h3>
 				@else
 				@foreach($reviews as $review)
 				<div class="panel media">
@@ -116,24 +116,24 @@
                 </h5>
 					<div class="media-left">
 					 <a href="{{route('user.detail',$review->user->id_user)}}">
-						<img style="width: 40px;height: 40px;" src="{{$review->user->image_user}}" title="One movies" alt=" " />
+						<img style="width: 40px;height: 40px;" @if($review->user->image_user!=null) src="{{$review->user->image_user}}" @else src="{{asset('resources/images/avatar.png')}}" @endif title="One movies" alt=" " />
 						</a>
 					</div>
-						<div class="media-body">
-							<p>{{$review->content_review}}</p>
-						<div class="block-stars" style="float:left;">
-							<ul class="w3l-ratings">
-								<li><i class="fa @if($review->score_review<1&&$review->score_review>0) fa-star-half-o @elseif($review->score_review>=1) fa-star @else fa-star-o @endif" aria-hidden="true"></i></li>
-								<li><i class="fa @if($review->score_review<2&&$review->score_review>1) fa-star-half-o @elseif($review->score_review>=2) fa-star @else fa-star-o @endif" aria-hidden="true"></i></li>
-								<li><i class="fa @if($review->score_review<3&&$review->score_review>2) fa-star-half-o @elseif($review->score_review>=3) fa-star @else fa-star-o @endif" aria-hidden="true"></i></li>
-								<li><i class="fa @if($review->score_review<4&&$review->score_review>3) fa-star-half-o @elseif($review->score_review>=4) fa-star @else fa-star-o @endif" aria-hidden="true"></i></li>
-								<li><i class="fa @if($review->score_review<5&&$review->score_review>4) fa-star-half-o @elseif($review->score_review>=5) fa-star @else fa-star-o @endif" aria-hidden="true"></i></li>
-							</ul>
-						</div>
-						</div>
-						</div>
-						@endforeach
-						@endif
+                    <div class="media-body">
+                        <p>{{$review->content_review}}</p>
+                        <div class="block-stars" style="float:left;">
+                            <ul class="w3l-ratings">
+                                <li><i class="fa @if($review->score_review<1&&$review->score_review>0) fa-star-half-o @elseif($review->score_review>=1) fa-star @else fa-star-o @endif" aria-hidden="true"></i></li>
+                                <li><i class="fa @if($review->score_review<2&&$review->score_review>1) fa-star-half-o @elseif($review->score_review>=2) fa-star @else fa-star-o @endif" aria-hidden="true"></i></li>
+                                <li><i class="fa @if($review->score_review<3&&$review->score_review>2) fa-star-half-o @elseif($review->score_review>=3) fa-star @else fa-star-o @endif" aria-hidden="true"></i></li>
+                                <li><i class="fa @if($review->score_review<4&&$review->score_review>3) fa-star-half-o @elseif($review->score_review>=4) fa-star @else fa-star-o @endif" aria-hidden="true"></i></li>
+                                <li><i class="fa @if($review->score_review<5&&$review->score_review>4) fa-star-half-o @elseif($review->score_review>=5) fa-star @else fa-star-o @endif" aria-hidden="true"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @endif
 		@if($reviews->count()!=0)
         <div class="blog-pagenat-wthree">                
           <ul>
