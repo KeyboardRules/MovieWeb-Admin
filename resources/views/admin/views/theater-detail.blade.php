@@ -104,7 +104,7 @@
                     @foreach($theater->movies->sortByDesc('score()')->take(10) as $movie)
 					<div class="item">
 						<div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
-							<a href="{{route('movie.detail',$movie->id_movie)}}" class="hvr-shutter-out-horizontal"><img src="{{$movie->image_movie}}" title="album-name" class="img-responsive" alt=" " />
+							<a href="{{route('movie.detail',$movie->id_movie)}}" class="hvr-shutter-out-horizontal"><img @if($movie->image_movie!=null) src="{{$movie->image_movie}}" @else src="{{asset('resources/images/movie.jpg')}}" @endif title="album-name" class="img-responsive" alt=" " />
 								<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
 							</a>
 							<div class="mid-1 agileits_w3layouts_mid_1_home">

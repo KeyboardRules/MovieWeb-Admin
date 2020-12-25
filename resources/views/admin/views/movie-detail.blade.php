@@ -157,7 +157,7 @@
                     @foreach($movie->theaters as $theater)
 					<div class="item">
 						<div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
-							<a href="{{route('theater.detail',$theater->id_theater)}}" class="hvr-shutter-out-horizontal"><img src="{{$theater->image_theater}}" title="album-name" class="img-responsive" alt=" " />
+							<a href="{{route('theater.detail',$theater->id_theater)}}" class="hvr-shutter-out-horizontal"><img @if($theater->image_theater!=null) src="{{$theater->image_theater}}" @else src="{{asset('resources/images/theater.png')}}" title="album-name" class="img-responsive" alt=" " />
 								<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
 							</a>
 							<div class="mid-1 agileits_w3layouts_mid_1_home">
