@@ -7,4 +7,8 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+# Note
+- In xampp you have to create a server call:"ImageServer" with 3 sub folder:"Movies,Theaters,Users"
+
+- Remeber to run migrate to get database;
 
