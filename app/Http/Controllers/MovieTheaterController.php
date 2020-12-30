@@ -33,7 +33,7 @@ class MovieTheaterController extends Controller
         
     }
     function SubmitTheaters(Request $request,$id=0){
-        $movie=Movie::find($id)->first();
+        $movie=Movie::find($id);
         if($movie){
             $data = $request->validate([
                 'theater' => 'required|max:255',
@@ -56,7 +56,7 @@ class MovieTheaterController extends Controller
         return \redirect()->route('theaters');
     }
     function SubmitMovies(Request $request,$id=0){
-        $theater=Theater::find($id)->first();
+        $theater=Theater::find($id);
         if($theater!=null){
             $data = $request->validate([
                 'movie' => 'required|max:255',
@@ -75,7 +75,7 @@ class MovieTheaterController extends Controller
                 return \redirect()->back()->with('add_message','Không tồn tại phim này')->with('class','alert alert-danger');
             }
             if($query){
-                return \redirect()->back()->with('add_message','Phim đã bao gồm rạp này')->with('class','alert alert-danger');
+                return \redirect()->back()->with('add_message','Rạp đã bao gồm phim này')->with('class','alert alert-danger');
             }
         }
         return \redirect()->route('movies');
