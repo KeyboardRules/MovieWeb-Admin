@@ -83,7 +83,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Ngày công chiếu</label>
                         <div class="col-sm-8">
-                        <p class="form-control-static">{{$movie->date_movie}}</p>
+                        <p class="form-control-static">{{Carbon\Carbon::parse($movie->date_movie)->format('M d Y')}}</p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -152,12 +152,12 @@
             <div class="w3_agile_banner_bottom_grid">
                 @if($movie->theaters->count()==0)
                 <h3 style="text-align:center;">Hiện tại không có rạp nào chiếu bộ phim này</h3>
-                @endif
+                @else
 				<div id="owl-demo" class="owl-carousel owl-theme">
                     @foreach($movie->theaters as $theater)
 					<div class="item">
 						<div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
-							<a href="{{route('theater.detail',$theater->id_theater)}}" class="hvr-shutter-out-horizontal"><img @if($theater->image_theater!=null) src="{{$theater->image_theater}}" @else src="{{asset('resources/images/theater.png')}}" title="album-name" class="img-responsive" alt=" " />
+                            <a href="{{route('theater.detail',$theater->id_theater)}}" class="hvr-shutter-out-horizontal"><img @if($theater->image_theater!=null) src="{{$theater->image_theater}}" @else src="{{asset('resources/images/theater.png')}}" title="album-name" @endif class="img-responsive" alt=""/>
 								<div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
 							</a>
 							<div class="mid-1 agileits_w3layouts_mid_1_home">
@@ -169,6 +169,8 @@
 						</div>
                     </div>
                     @endforeach
+                </div>
+                @endif
 			</div>
         </section>
         <!-- comment -->
@@ -204,9 +206,9 @@
 							</ul>
 						</div>
 						</div>
-						</div>
-						@endforeach
-						@endif
+					</div>
+			    @endforeach
+				@endif
 		@if($reviews->count()!=0)
         <div class="blog-pagenat-wthree">                
           <ul>

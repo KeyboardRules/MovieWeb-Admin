@@ -55,7 +55,7 @@
                     <div class="form-group">
                         <div class="col-lg-offset-4 col-lg-10">
                             <button type="submit" class="btn btn-info">Xác nhận</button>
-                            <a class="btn btn-default" href="{{ route('categories') }}">Hủy</a>  
+                            <a class="btn btn-default" href="{{ route('movie.detail',$movie->id_movie) }}">Hủy</a>  
                         </div> 
                         <div class="col-lg-offset-6">
                         </div> 
